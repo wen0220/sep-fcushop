@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>商品新增</title>
+</head>
+<body>
+<form class="d-flex">
+  <input class="form-control " type="text" placeholder="商品名稱" name="name" aria-label="product name" aria-describedby="searchProduct" id="name">
+  <input class="form-control " type="text" placeholder="商品照片URL" name="imageUrl" aria-label="product image" aria-describedby="searchProduct" id="image">
+  <input class="form-control " type="text" placeholder="商品價錢" name="price" aria-label="product price" aria-describedby="searchProduct" id="price">
+  <input class="form-control " type="text" placeholder="商品描述" name="description" aria-label="product description" aria-describedby="searchProduct" id="description">
+  <button type="submit" class="btn btn-primary" herf="index.html">新增</button>
+</form>
+</body>
+<script>
+</script>
+</html>
+
+insert into product (`NAME`, `IMAGE_URL`, `PRICE`, `DESCRIPTION`) values (`name`, `image`, `price`, `description`);

@@ -36,4 +36,13 @@ public class ProductService {
           .executeAndFetch(Product.class);
     }
   }
+
+  public List<Product> insert(Product product){
+    try (Connection connection = sql2oDbHandler.getConnector().open()) {
+      String query = "insert into PRODUCT NAME,IMAGE_URL,PRICE,DESCRIPTION values name,imageUrl,price,description";
+
+      return connection.createQuery(query)
+          .executeAndFetch(Product.class);
+    }
+  }
 }

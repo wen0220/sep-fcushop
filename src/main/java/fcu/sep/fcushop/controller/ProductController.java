@@ -7,6 +7,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 /**
  *this is a class for get product information.
@@ -26,6 +27,10 @@ public class ProductController {
   @GetMapping("/products/{keyword}")
   public List<Product> getProducts(@PathVariable("keyword") String keyword) {
     return productManager.getProducts(keyword);
+  }
 
+  @PostMapping("/add")
+  public String addproduct(){
+    return "redirect:/products";
   }
 }
