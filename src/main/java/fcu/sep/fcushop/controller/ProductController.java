@@ -38,7 +38,7 @@ public class ProductController {
     return productManager.insert(name, imgUrl, price, description);
   }
 
-  @RequestMapping(value = "/update", method = RequestMethod.GET)
+  @RequestMapping(value = "/update_product", method = RequestMethod.GET)
   @ResponseBody
   public String updateProduct(
       @RequestParam("name") String name,

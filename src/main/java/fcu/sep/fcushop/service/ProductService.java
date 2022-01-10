@@ -58,7 +58,7 @@ public class ProductService {
       connection.createQuery(query)
           .addParameter("name", name)
           .addParameter("price", price)
-          .executeAndFetch(Product.class);
+          .executeUpdate();
       return "Success";
     }
   }
