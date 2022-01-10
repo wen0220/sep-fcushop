@@ -5,10 +5,8 @@ import fcu.sep.fcushop.model.Product;
 import fcu.sep.fcushop.service.ProductService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
 /**
  *this is a class for get product information.
  */
@@ -29,8 +27,23 @@ public class ProductController {
     return productManager.getProducts(keyword);
   }
 
-  @PostMapping("/add")
-  public String addproduct(){
-    return "redirect:/products";
+  @RequestMapping(value = "/add_product", method = RequestMethod.GET)
+  @ResponseBody
+  public String addProduct(
+      @RequestParam("name") String name,
+      @RequestParam("img_url") String imgUrl,
+      @RequestParam("price") Integer price,
+      @RequestParam("description") String description
+  ) {
+    return productManager.insert(name, imgUrl, price, description);
+  }
+
+  @RequestMapping(value = "/update", method = RequestMethod.GET)
+  @ResponseBody
+  public String updateProduct(
+      @RequestParam("name") String name,
+      @RequestParam("price") Integer price
+  ) {
+    return productManager.update(name, price);
   }
 }

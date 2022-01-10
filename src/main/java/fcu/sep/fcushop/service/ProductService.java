@@ -37,12 +37,30 @@ public class ProductService {
     }
   }
 
-  public List<Product> insert(Product product){
+  public String insert(String name, String imageUrl, Integer price, String description) {
     try (Connection connection = sql2oDbHandler.getConnector().open()) {
-      String query = "insert into PRODUCT NAME,IMAGE_URL,PRICE,DESCRIPTION values name,imageUrl,price,description";
+      String query = "insert into PRODUCT (NAME,IMAGE_URL,PRICE,DESCRIPTION) values (:name,:imageUrl,:price,:description)";
+      System.out.println(query);
+      connection.createQuery(query)
+          .addParameter("name", name)
+          .addParameter("imageUrl", imageUrl)
+          .addParameter("price", price)
+          .addParameter("description", description)
+          .executeUpdate();
+      return "Success";
+    }
+  }
 
-      return connection.createQuery(query)
+  public String update(String name, Integer price) {
+    try (Connection connection = sql2oDbHandler.getConnector().open()) {
+      String query = "update product set PRICE=:price where NAME=:name";
+
+      connection.createQuery(query)
+          .addParameter("name", name)
+          .addParameter("price", price)
           .executeAndFetch(Product.class);
+      return "Success";
     }
   }
 }
+
